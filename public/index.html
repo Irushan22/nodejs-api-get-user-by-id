@@ -17,6 +17,7 @@
 </form>
 
 <ul></ul>
+<div class="inner"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
 <script>
@@ -40,11 +41,13 @@
               url: "http://localhost:3000/student/"+id,
               type: "GET",
               success: function (result) {
+                console.log(result[0]);
                 console.log(result[0].assignment1);
-                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");
-                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");
-                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");  
-                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");  
+                $( ".inner" ).append("<p>ID: "+result[0].ID+"</p>");
+                $( ".inner" ).append("<p>assignment1: "+result[0].assignment1+"</p>");
+                $( ".inner" ).append("<p>assignment2: "+result[0].assignment2+"</p>");
+                $( ".inner" ).append("<p>label: "+result[0].label+"</p>");
+
               },
               
             });   
