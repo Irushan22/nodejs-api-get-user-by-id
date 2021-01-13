@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+</style>
+</head>
+<body>
+
+<h1>Hello world</h1>
+
+<form id="stdidfor">
+    <label>Student ID:</label><br>
+    <input type="text" id="stdidd" name="stu"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<ul></ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script>
+    //document.addEventListener('click', ()=>{
+   
+        // const n = document.getElementById("stdid").value;
+        // console.log(n);
+        // fetch('http://localhost:3000/student/:id')
+        //     body:id :n
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+    // });
+
+    $(document).ready(function(){
+      $("#stdidfor").submit(function(event){
+          event.preventDefault();
+          var stdid = $("#stdidd").val();
+          console.log(stdid);
+          var id = stdid;
+            $.ajax({
+              url: "http://localhost:3000/student/"+id,
+              type: "GET",
+              success: function (result) {
+                console.log(result[0].assignment1);
+                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");
+                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");
+                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");  
+                $("ul").append("<li>Assignment1: "+result.assignment1+"<li>");  
+              },
+              
+            });   
+      });
+    });
+</script>
+</body>
+</html>
