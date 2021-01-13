@@ -18,41 +18,53 @@
 
 <ul></ul>
 <div class="inner"></div>
+<p id="test">
+
+</p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
 <script>
-    //document.addEventListener('click', ()=>{
-   
-        // const n = document.getElementById("stdid").value;
-        // console.log(n);
-        // fetch('http://localhost:3000/student/:id')
-        //     body:id :n
-        //     .then(response => response.json())
-        //     .then(data => console.log(data))
-    // });
 
-    $(document).ready(function(){
-      $("#stdidfor").submit(function(event){
-          event.preventDefault();
-          var stdid = $("#stdidd").val();
-          console.log(stdid);
-          var id = stdid;
-            $.ajax({
-              url: "http://localhost:3000/student/"+id,
-              type: "GET",
-              success: function (result) {
-                console.log(result[0]);
-                console.log(result[0].assignment1);
-                $( ".inner" ).append("<p>ID: "+result[0].ID+"</p>");
-                $( ".inner" ).append("<p>assignment1: "+result[0].assignment1+"</p>");
-                $( ".inner" ).append("<p>assignment2: "+result[0].assignment2+"</p>");
-                $( ".inner" ).append("<p>label: "+result[0].label+"</p>");
-
-              },
-              
-            });   
-      });
+  // ES6
+  document.querySelector('#stdidfor').addEventListener('submit', function(e) {
+    e.preventDefault();
+        let std = document.getElementById('stdidd').value;
+        console.log(std);
+        let id = std;
+        fetch('http://localhost:3000/student/'+id)
+            .then(response => response.json())
+            .then((data)=>{
+              let stdid = data[0].ID;
+              const test = document.getElementById('test');
+                    test.innerHTML = "<p>Lable: "+data[0].label+"<p>"; 
+            })
+           
     });
+
+    // Jquery ajax
+
+    // $(document).ready(function(){
+    //   $("#stdidfor").submit(function(event){
+    //       event.preventDefault();
+    //       var stdid = $("#stdidd").val();
+    //       console.log(stdid);
+    //       var id = stdid;
+    //         $.ajax({
+    //           url: "http://localhost:3000/student/"+id,
+    //           type: "GET",
+    //           success: function (result) {
+    //             console.log(result[0]);
+    //             console.log(result[0].assignment1);
+    //             $( ".inner" ).append("<p>ID: "+result[0].ID+"</p>");
+    //             $( ".inner" ).append("<p>assignment1: "+result[0].assignment1+"</p>");
+    //             $( ".inner" ).append("<p>assignment2: "+result[0].assignment2+"</p>");
+    //             $( ".inner" ).append("<p>label: "+result[0].label+"</p>");
+
+    //           },
+              
+    //         });   
+    //   });
+    // });
 </script>
 </body>
 </html>
